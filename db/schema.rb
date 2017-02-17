@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170205000554) do
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "book_id"
   end
 
 end

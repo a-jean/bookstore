@@ -18,5 +18,14 @@
     <dd><%= @book.description %></dd>
 </dl>
 
+<p> Number of reviews: <%= @book.reviews.count %> </p>
+
+<ul>
+  <% @book.reviews.each do |review| %>
+    <li> <%= review.body %> </li>
+  <% end %>
+</ul>
+
+
 <%= link_to("Edit book", edit_book_path(@book), class: "button") %>
 <%= button_to("Delete Book", book_path(@book), method: :delete, class: "button danger") %>

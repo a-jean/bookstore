@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookstore</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navigation">
+    <div class="center">
+      <%= link_to "My Super Rad Bookstore", root_path %>
+    </div>
+  </div>
+
+  <div class="container">
+  <%= yield %>
+</div>
+</body>
+</html>

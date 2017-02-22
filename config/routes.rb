@@ -3,6 +3,8 @@ root "books#index"
 resources :books do
   resources :reviews
 end
+
+  resource :session
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

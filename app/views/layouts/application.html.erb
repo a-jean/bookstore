@@ -17,7 +17,11 @@
     </div>
 
     <div class="right">
+      <% if session[:user_id].present? %>
       <%= link_to "Log Out", session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Log In", new_session_path %>
+      <% end %>
     </div>
   </div>
 

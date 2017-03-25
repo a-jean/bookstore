@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :verify_user_session
+  skip_before_action :verify_user_session, only: [:index, :show]
 
   def index
     @books = Book.all
@@ -10,8 +12,13 @@ class BooksController < ApplicationController
   end
 
   def new
+    if session[:user_id].blank?
+      flash[:alert] = "Please login to continue"
+      redirect_to new_session_path
+    else
     @book = Book.new
   end
+end
 
   def create
     Book.create(book_params)
@@ -37,5 +44,12 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
+  end
+
+  def verify_user_session
+    if session[:user_id].blank?
+      flash[:alert] = "Please login to continue"
+      redirect_to new_session_path
+    end
   end
 end

@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+before_action :verify_user_session
+
+
   def new
     @book = Book.find(params[:book_id])
     @review = @book.reviews.build
@@ -13,4 +16,11 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:body)
   end
-end
+
+def verify_user_session
+  if session[:user_id].blank?
+     flash[:alert] = "Please login to continue"
+     redirect_to new_session_path
+   end
+ end
+ end 

@@ -14,7 +14,8 @@ before_action :verify_user_session
   end
 
   def review_params
-    params.require(:review).permit(:body)
+    permitted_params = params.require(:review).permit(:body)
+    permitted_params.merge(user_id: session[:user_id])
   end
 
 def verify_user_session
@@ -23,4 +24,4 @@ def verify_user_session
      redirect_to new_session_path
    end
  end
- end 
+ end

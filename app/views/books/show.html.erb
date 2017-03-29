@@ -21,9 +21,13 @@
 <p> Number of reviews: <%= @book.reviews.count %> </p>
 
 <ul>
-  <% @book.reviews.each do |review| %>
-    <li> <%= review.body %> </li>
+<% @book.reviews.each do |review| %>
+  <% if(review.user.present?) %>
+    <li> <%= review.user.username %> - <%= review.body %> </li>
+    <% else %>
+    <li> Anonymous - <%= review.body %> </li>
   <% end %>
+<% end %>
 </ul>
 
 <% if session[:user_id].present? %>
